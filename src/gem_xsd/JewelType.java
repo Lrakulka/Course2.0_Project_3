@@ -100,7 +100,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "visualParameters",
     "value"
 })
-public class JewelType {
+public class JewelType implements Comparable<JewelType> {
 
     @XmlElement(name = "Name", required = true)
     protected String name;
@@ -364,6 +364,11 @@ public class JewelType {
             this.cut = value;
         }
 
+    }
+
+    @Override
+    public int compareTo(JewelType o) {
+	return Double.compare(this.value, o.value);
     }
 
 }
