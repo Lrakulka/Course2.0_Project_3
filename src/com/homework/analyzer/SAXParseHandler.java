@@ -10,7 +10,11 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import gem_xsd.JewelType;
 import gem_xsd.JewelType.VisualParameters;
-
+/**
+ * 
+ * @author asd
+ * Handler for SAX parser
+ */
 public class SAXParseHandler extends DefaultHandler {
     List<JewelType> javels;
     private JewelType jewel;

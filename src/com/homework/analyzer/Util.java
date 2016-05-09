@@ -1,17 +1,28 @@
 package com.homework.analyzer;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import javax.xml.XMLConstants;
+import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import javax.xml.stream.XMLEventReader;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.events.Characters;
+import javax.xml.stream.events.EndElement;
+import javax.xml.stream.events.StartElement;
+import javax.xml.stream.events.XMLEvent;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
@@ -162,8 +173,96 @@ public class Util {
      * @return list of JewelType
      */
     public static List<JewelType> initListStAX(String xmlPath) {
-	
-	    return Collections.<JewelType>emptyList();
+	List<JewelType> jewels = new ArrayList<>();
+	JewelType jewel = null;
+	VisualParameters visualParameters = null;
+	byte elementPos = -1;
+	try {
+	     XMLInputFactory factory = XMLInputFactory.newInstance();
+	     XMLEventReader eventReader =
+	     factory.createXMLEventReader(new FileReader(xmlPath));
+	     while(eventReader.hasNext()){
+		 XMLEvent event = eventReader.nextEvent();
+	         switch(event.getEventType()){
+	             case XMLStreamConstants.START_ELEMENT:
+	                 StartElement startElement = event.asStartElement();
+	                 String qName = startElement.getName().getLocalPart();
+	                 switch (qName) {
+            	            case "jewel" : 
+            	 	    	jewel = new JewelType();
+            	 	    	jewel.setId(startElement.getAttributeByName(new 
+    	                	     QName("id")).getValue());
+            	 	    	break;
+            	 	    case "Name" :
+            	 	    	elementPos = 1;
+            	 	    	break;
+            	 	    case "Preciousness" :
+            	 		elementPos = 2;
+            	 	    	break;
+            	 	    case "Origin" :
+            	 	    	elementPos = 3;
+            	 	    	break;
+            	 	    case "Visual_Parameters" : 
+            	 		visualParameters = new VisualParameters();
+            	 		break;
+            	 	    case "Color" :
+            	 	    	elementPos = 4;
+            	 	    	break;
+            	 	    case "Transparency" :
+            	     	    	elementPos = 5;
+            	 	    	break;
+            	     	    case "Cut" :
+            	     	    	elementPos = 6;
+            	 	    	break;	    	    
+            	     	    case "Value" :
+            	 	    	elementPos = 7;
+            	 	    	break;
+	                 }
+	              break;
+	              case XMLStreamConstants.CHARACTERS:
+	        	  Characters characters = event.asCharacters();
+	        	  switch (elementPos) {
+        	      	    case 1:
+        	      		jewel.setName(characters.getData());
+        	      		break;
+        	      	    case 2:
+        	      		jewel.setPreciousness(Boolean.valueOf(characters.getData()));
+        	      		break;
+        	      	    case 3:
+        	      		jewel.setOrigin(characters.getData());
+        	      		break;
+        	      	    case 4:
+        	      		visualParameters.setColor(characters.getData());
+        	      		break;
+        	      	    case 5:
+        	      		visualParameters.setTransparency(Byte.valueOf(characters.getData()));
+        	      		break;
+        	      	    case 6:
+        	      		visualParameters.setCut(Byte.valueOf(characters.getData()));
+        	      		break;
+        	      	    case 7:
+        	      		jewel.setValue(Double.valueOf(characters.getData()));
+        	      		break;
+	        	  }
+        	      	  elementPos = -1;
+	              break;
+	              case  XMLStreamConstants.END_ELEMENT:
+	                     EndElement endElement = event.asEndElement();
+	                     String name = endElement.getName().getLocalPart();
+	                     if (name.equalsIgnoreCase("jewel")) {
+	                	 jewels.add(jewel);
+	                     } else    if (name.equalsIgnoreCase("Visual_Parameters")) {
+	                	 jewel.setVisualParameters(visualParameters);
+	                     }
+	               break;
+	         }	    
+	     }
+	} catch (FileNotFoundException e) {
+	            e.printStackTrace();
+	} catch (XMLStreamException e) {
+	            e.printStackTrace();
+	}
+	return jewels;
     }
     
     public static List<JewelType> sortList(List<JewelType> list) {
