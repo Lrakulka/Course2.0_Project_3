@@ -1,5 +1,12 @@
 package com.homework.terminal;
 
+import java.io.File;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.helpers.DefaultHandler;
+
 import com.homework.analyzer.Util;
 
 public class Terminal {
@@ -13,8 +20,10 @@ public class Terminal {
 	   System.out.println(pathes[1] + " is not valid against " + pathes[0]);
 	   return;
 	}	
+	System.out.println("DOM parser");
 	Util.sortList(Util.initListDOM(pathes[1])).stream().forEach(System.out::println);
+	System.out.println("SAX parser");
 	Util.sortList(Util.initListSAX(pathes[1])).stream().forEach(System.out::println);
-	Util.sortList(Util.initListStAX(pathes[1])).stream().forEach(System.out::println);
+	//Util.sortList(Util.initListStAX(pathes[1])).stream().forEach(System.out::println);
     }
 }

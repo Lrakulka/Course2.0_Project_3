@@ -3,12 +3,15 @@ package com.homework.analyzer;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
@@ -53,9 +56,20 @@ public class Util {
      * @return list of JewelType
      */
     public static List<JewelType> initListSAX(String xmlPath) {
-	List<JewelType> list = new ArrayList<>();
-	
-	return list;
+	SAXParseHandler userhandler = null;
+	try {	
+	    File inputFile = new File(xmlPath);
+	    SAXParserFactory factory = SAXParserFactory.newInstance();
+	    SAXParser saxParser = factory.newSAXParser();
+	    userhandler = new SAXParseHandler();
+	    saxParser.parse(inputFile, userhandler);     
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	if (userhandler == null) {
+	    return Collections.<JewelType>emptyList();
+	}
+	return userhandler.javels;
     }
     /**
      * Initialization of List<JewelType> from xml file.
@@ -148,9 +162,8 @@ public class Util {
      * @return list of JewelType
      */
     public static List<JewelType> initListStAX(String xmlPath) {
-	List<JewelType> list = new ArrayList<>();
 	
-	return list;
+	    return Collections.<JewelType>emptyList();
     }
     
     public static List<JewelType> sortList(List<JewelType> list) {

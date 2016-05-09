@@ -363,12 +363,29 @@ public class JewelType implements Comparable<JewelType> {
         public void setCut(byte value) {
             this.cut = value;
         }
-
+        
+        @Override
+        public String toString() {
+            StringBuilder builder = new StringBuilder();
+            builder.append("Color = ").append(color).
+            append(" Transparency = ").append(transparency).
+            append(" Cut = ").append(cut);
+            return builder.toString();
+        }
     }
 
     @Override
     public int compareTo(JewelType o) {
 	return Double.compare(this.value, o.value);
     }
-
+    
+    @Override
+    public String toString() {
+	StringBuilder builder = new StringBuilder();
+	builder.append("ID = ").append(id).append(" Name = ").
+	append(preciousness).append(" Origin = ").append(origin).
+	append(" Value = ").append(value).
+	append(" VisualParameters: ").append(visualParameters.toString());
+        return builder.toString();
+    }
 }
