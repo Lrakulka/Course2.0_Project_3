@@ -2,6 +2,7 @@ package com.homework.analyzer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ import javax.xml.stream.events.Characters;
 import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
@@ -37,6 +40,25 @@ import gem_xsd.JewelType;
 import gem_xsd.JewelType.VisualParameters;
 
 public class Util {
+    public static void convrtXMLtoHTML(String xmlPath, String xslPath, String htmlPath) {
+	try {
+	    TransformerFactory tFactory = TransformerFactory.newInstance();
+	    Transformer transformer =
+	      tFactory.newTransformer
+	         (new javax.xml.transform.stream.StreamSource
+	            (xslPath));
+
+	    transformer.transform
+	      (new javax.xml.transform.stream.StreamSource
+	            (xmlPath),
+	       new javax.xml.transform.stream.StreamResult
+	            ( new FileOutputStream(htmlPath)));
+	}
+	catch (Exception e) {
+	    e.printStackTrace( );
+	}
+    }
+    
     /**
      * Validate xml file
      * @param xsdPath

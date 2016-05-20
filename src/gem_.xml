@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Gem xmlns="gem_xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="gem_xsd gem.xsd">
+<Gem>
 	<jewel id="sopra_1">
 		<Name>Sopra</Name>
 		<Preciousness>true</Preciousness>
