@@ -121,7 +121,7 @@ public class Util {
     	    dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
-            NodeList jewelList = doc.getElementsByTagName("jewel");
+            NodeList jewelList = doc.getElementsByTagName("g:jewel");
             NodeList jewelChildrList, jawelVisualParametersList;
             Node jawelNode, jawelChildNode;
             for (int i = jewelList.getLength() - 1; i > -1; --i) {

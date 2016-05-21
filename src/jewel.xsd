@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="jewel_xsd"
+	xmlns="jewel_xsd" 
+	version="0.1" 
+	elementFormDefault="qualified">
+	
+	<xs:complexType name="JewelType">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string"/>
+			<xs:element name="Preciousness" type="xs:boolean"/>	
+			<xs:element name="Origin">
+				<xs:simpleType>
+			    	<xs:restriction base="xs:string">
+			      		<xs:pattern value="[a-zA-Z0-9]+"/>
+			    	</xs:restriction>
+			  	</xs:simpleType>
+			</xs:element>
+			<xs:element name="Visual_Parameters">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Color">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Red"/>
+									<xs:enumeration value="Green"/>
+									<xs:enumeration value="Yelow"/>
+									<xs:enumeration value="White"/>
+									<xs:enumeration value="Blue"/>
+									<xs:enumeration value="Brown"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="Transparency">
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:maxInclusive value="100"/>
+									<xs:minInclusive value="0"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="Cut">
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:maxInclusive value="15"/>
+									<xs:minInclusive value="4"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="Value">
+				<xs:simpleType>
+				    <xs:restriction base="xs:double">
+				    	<xs:minExclusive value="0"/>
+				    </xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute  name="id" type="xs:ID" use="required"/>
+	</xs:complexType>
+</xs:schema>

@@ -30,7 +30,7 @@ public class SAXParseHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, 
 		Attributes attributes) throws SAXException {
 	switch (qName) {
-	    case "jewel" : 
+	    case "g:jewel" : 
 	    	jewel = new JewelType();
 	    	jewel.setId(attributes.getValue("id"));
 	    	break;
@@ -64,7 +64,7 @@ public class SAXParseHandler extends DefaultHandler {
     @Override
     public void endElement(String uri, 
 		String localName, String qName) throws SAXException {
-        if (qName.equalsIgnoreCase("jewel")) {
+        if (qName.equalsIgnoreCase("g:jewel")) {
     	javels.add(jewel);
         }
         if (qName.equalsIgnoreCase("Visual_Parameters")) {

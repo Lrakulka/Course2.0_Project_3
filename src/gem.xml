@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Gem xmlns="gem_xsd" 
+<g:Gem xmlns:g="gem_xsd"
+	 xmlns="jewel_xsd"
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	 xsi:schemaLocation="gem_xsd gem.xsd">
-	<jewel id="sopra_1">
+	<g:jewel id="sopra_1">		
 		<Name>Sopra</Name>
 		<Preciousness>true</Preciousness>
 		<Origin>Africa</Origin>
@@ -12,8 +13,8 @@
 			<Cut>4</Cut>
 		</Visual_Parameters>
 		<Value>1.3</Value>
-	</jewel>
-	<jewel id="sopra_2">
+	</g:jewel>
+	<g:jewel id="sopra_2">
 		<Name>Soprano</Name>
 		<Preciousness>true</Preciousness>
 		<Origin>Canada</Origin>
@@ -23,8 +24,8 @@
 			<Cut>5</Cut>
 		</Visual_Parameters>
 		<Value>2</Value>
-	</jewel>
-	<jewel id="popra_1">
+	</g:jewel>
+	<g:jewel id="popra_1">
 		<Name>Popra</Name>
 		<Preciousness>false</Preciousness>
 		<Origin>USA</Origin>
@@ -34,8 +35,8 @@
 			<Cut>6</Cut>
 		</Visual_Parameters>
 		<Value>3.1</Value>
-	</jewel>
-	<jewel id="sopra_3">
+	</g:jewel>
+	<g:jewel id="sopra_3">
 		<Name>Sopraska</Name>
 		<Preciousness>true</Preciousness>
 		<Origin>Africa</Origin>
@@ -45,8 +46,8 @@
 			<Cut>7</Cut>
 		</Visual_Parameters>
 		<Value>5.3</Value>
-	</jewel>
-	<jewel id="pila_1">
+	</g:jewel>
+	<g:jewel id="pila_1">
 		<Name>Pila</Name>
 		<Preciousness>true</Preciousness>
 		<Origin>Mantu</Origin>
@@ -56,8 +57,8 @@
 			<Cut>8</Cut>
 		</Visual_Parameters>
 		<Value>1.2</Value>
-	</jewel>
-	<jewel id="sopra_5">
+	</g:jewel>
+	<g:jewel id="sopra_5">
 		<Name>Soprak</Name>
 		<Preciousness>false</Preciousness>
 		<Origin>CumCum</Origin>
@@ -67,8 +68,8 @@
 			<Cut>8</Cut>
 		</Visual_Parameters>
 		<Value>2.1</Value>
-	</jewel>
-	<jewel id="sopra_6">
+	</g:jewel>
+	<g:jewel id="sopra_6">
 		<Name>Sop</Name>
 		<Preciousness>false</Preciousness>
 		<Origin>Maklin</Origin>
@@ -78,5 +79,5 @@
 			<Cut>12</Cut>
 		</Visual_Parameters>
 		<Value>5.4</Value>
-	</jewel>
-</Gem>
+	</g:jewel>
+</g:Gem>
